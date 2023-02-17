@@ -33,6 +33,9 @@
 1. 코딩테스트 학습
     - 자료구조 / 알고리즘
         - 정렬
+![실행화면](https://github.com/CodingNewbie0/python-codingtest-2023/blob/main/Day05/%EA%B3%A0%EA%B8%89%EC%A0%95%EB%A0%AC.png?raw=true)
+
+    고급정렬 실행화면
         - 검색
         - 다이나믹 프로그래밍 / 피보나치 실행시간 비교
 
