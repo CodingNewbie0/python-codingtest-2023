@@ -40,35 +40,38 @@
 
 # 6일차
 1. 코딩테스트 학습
-    - 코딩테스트 알고리즘
-        - 백준
-        - 프로그래머스
+    - 코딩테스트 학습
+        - 자료구조
+            - [x] deque (덱)
+        - 알고리즘
+            - [x] 투포인터
+            - [x] 슬라이딩윈도우
+            - [x] 정렬
 
 ```python
-# 백준 1253 좋다
-import sys
-input = sys.stdin.readline
+# 백준 11003 최솟값찾기 1
+from collections import deque
+N, L = map(int, input().split()) # 12 3
+mydeque = deque()
+now = list(map(int, input().split())) # 1 5 2 3 6 2 3 7 3 5 2 6
 
-N = int(input())
-count = 0
-A = list(map(int, input().split())) # 한줄에 입력을 다 받을때
-A.sort(reverse=False) # 전체 정렬(리버스 트루하면 역순정렬)
-
-for k in range(N):
-    find = A[k]
-    i =  0; j = N - 1 # i는 리스트 첫번째, j는 리스트 마지막번째 위치
-    while i < j: # 두 인덱스가 결국 만나면 while문을 종료
-        if A[i] + A[j] == find: # 두 수의 합이 찾는 수랑 일치
-            if i != k and j != k: # i와 j는 k와 같은 위치가 되면 안된다.
-                count += 1
-                break
-            elif i == k: i += 1
-            elif j == k: j -= 1
-        elif A[i] + A[j] < find: # i를 증가시켜야 합의 수가 커짐
-            i += 1
-        elif A[i] + A[j] > find: # j를 감소시켜야 합의 수가 작아짐
-            j -= 1
-
-print(count)
+# 새로운 값이 들어올 때마다 정렬 대신 현재 수보다 큰 값을 덱에서 제거해 시간 복잡도를 줄임
+for i in range(N):
+    while mydeque and mydeque[-1][0] > now[i]: # 인덱스가 현재값보다 크면
+        mydeque.pop() # 빼버린다
+    mydeque.append((now[i], i))
+    if mydeque[0][1] <= i - L: # 범위를 벗어난 값도 덱에서 제거
+        mydeque.popleft() # 왼쪽에서 빼버린다
+    print(mydeque[0][0], end=' ') # 무조건 최소값(min()과 동일) 1 1 1 2 2 2 2 2 3 3 2 2
 ```
 
+# 7일차
+1. 코딩테스트 학습
+    - 자료구조
+        - [x] 그래프
+        - [x] PriorityQueue (우선순위 큐)
+        - [x] heapq (힙큐)
+    - 알고리즘
+        - [x] 탐색 - DFS/BFS/이진함수
+        - [ ] 그리디
+        - [ ] 정수론
